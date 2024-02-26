@@ -1,0 +1,16 @@
+1. Currency convertor bug
+
+2. uml for calculator
+
+3. Cruise Application
+1. cruise.register(user)    16<=age<70
+2. pay(credit/Gpay)
+3. book(cabin/room)
+4. food("veg"/"non-veg"/"chinese")
+5. subscribe(myobj.name)
+6. build();
+
+4. compose IoT to tier, fuel tank...display the details to car dashboard
+
+
+

@@ -1,0 +1,166 @@
+sathyahelp123@gmail.com
+how to get requires in mornings code
+examples on typename
+
+R value??
+
+1. Data Types: mention the type (int_8, int_16, int_32)
+
+2. Alignment: fast variables
+
+3. C++ vs ASM using godbolt.org
+
+4. const vs constexpr
+
+5. Structural binding
+
+6. changes in if and switch
+
+7. changes in if and switch
+
+8. initializer list
+
+9. null vs nullptr
+
+10. various castings vs any
+
+11. auto deducing
+
+12. decltype
+
+13. template inheritance, crtp, covariant
+
+14. trailing return type
+
+15. functional composition from ground zero creating our  own stl franework vs std::bind
+
+16. type_traits nested traits
+
+------------------------06 feb 2024------------------------
+1. use concept and requires for previous codes
+2. how to change the requirements for different engines
+3. move fuelcheck into the mandate driving
+4. design calculator using variadic expression
+5. call(add,2,3, sub,4,5 division,10,5, mul,34,5)
+6. put placeholder code in fuel
+
+quiz:
+type_traits, nested type_traits, requires and concept, 
+how to take concept out from the code
+
+-----------------07 feb--------------
+1. MandateDriving code with explaination and misra guidelines
+2. convert jet airways create users using lambda
+3. lambda expression std::function and (*)()c
+
+// teach -> string_view string_buf
+
+-----------------08 feb--------------
+1. assume the visitor is your auditor and that you have a loan for both your automobile
+and your home. Allow the auditor to visit you, gather necessary data, and compute your loan
+for the month.
+2. std::function into jet airway vector
+
+car 
+engine 5 iots
+ac 2 iots lambdas, lvalue, rvalue
+requires for all the classes 
+
+sandwich code
+auditor who will enter the burger and tells the cost
+
+----------------09 feb-----------------
+1. define function: std::Function<void(double)>
+
+----------------12 feb-----------------
+umlet
+double dispatcher video
+
+teach -> unique and makeUnique Pointers
+
+S ----> Single Object (Singleton)
+O ----> Open for extension and close for modification
+L ----> Liskov Substitution Principle
+I ----> Interface segregation principle
+D ----> Dependency inversion principle
+
+Activity diagram, state diagram
+task: move visitor inside menu/composite
+
+----------------13 feb-----------------
+UML Diagram, activity diagram, class diagram, component diagram
+
+// when their are two different types use CONSTEXPR
+
+----------------14 feb-----------------
+shared pointer, unique pointer ( make changes in sandwich program)
+unique ptr -------> cannot be shared, only reused
+
+std::unique_ptr<Foo> p2 (std::move(p1));  // move will make sure that p1 should have only one instance
+ we can only use move here
+
+study makeFile
+
+
+
+----------------15 feb-----------------
+sharedptr, deadlock, weakptr
+
+----------------19 feb-----------------
+why we should not use using namespace ?
+from where begin() arrived
+std::execution::par,  std::execution::seq --> (godbolt.org)
+
+----------------20 feb-----------------
+Thread Poll 
+
+if(int x=5 ; x==15){
+    cout<<"x: "<<x<<endl;
+}
+else{
+    cout<<"x is not 15: "<<x<<endl;
+}
+
+
+----------------21 feb-----------------
+Singleton using threads
+use trailing return type
+call_once
+initializer list
+
+----------------22 feb-----------------
+Proxy
+Change in States (state machine)
+observer pattern
+namespace
+any
+
+
+
+Modern CPP Topics
+
+1. Use of const & constexpr
+2. Functional composition
+3. using keyword
+4. type_traits (concept and requires)
+5. variadic expressions
+6. lValue and rvalue
+7. perfect forwarding (std::forward)
+8. variants
+9. LAMBDA functions 
+10. lambda composition
+11. mutable lambda
+12. Model view control
+13. variant and visit (std::visit)
+14. UML diagrams
+
+
+Higher order functions
+functional composition
+threads
+unique_ptr 
+sharedptr
+chaining concept
+use perfect forwarding 
+use uniform initializer
+for_each

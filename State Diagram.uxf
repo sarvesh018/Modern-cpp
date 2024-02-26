@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>234</y>
+      <w>162</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Car State
+--
++ startCar()
+
++ stopCar()
+
++ accelarate()
+
++ applyBrake()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>414</y>
+      <w>27</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1152</x>
+      <y>513</y>
+      <w>342</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>Stop
+--
+startCar(){
+"Car is already started";
+}
+
+stopCar(){
+"Car is not moving";
+}
+
+accelarate(){
+**    if (vc.checkFuel() ) { carState = Running; }**
+    else { "Refuel Tank" }
+}
+
+applyBrake(){
+"Car is not moving";
+}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>432</y>
+      <w>819</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;890.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>441</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>225</y>
+      <w>261</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>CAR
+--
+CarState carState = new TurnOff;
+
+startCar(){ carState.startCar() }
+
+stopCar(){ carState.stopCar() }
+
+accelarate(){ carState.accelarate() }
+
+applyBrake(){ carState.applyBrake() }
+
+**- VisitorController vc**
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>297</y>
+      <w>189</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>513</y>
+      <w>342</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>TurnOn
+--
+startCar(){
+"Car is already started";
+}
+
+stopCar(){
+carState = Stop;
+}
+
+accelarate(){
+**    if ( vc.checkFuel() ) { carState = Running; }**
+    else { "Refuel Tank" }
+}
+
+applyBrake(){
+carState = Stop;
+}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>801</x>
+      <y>513</y>
+      <w>342</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>Running
+--
+startCar(){
+"Car is already started";
+}
+
+stopCar(){
+carState = Stop;
+}
+
+accelarate(){
+**    if ( vc.checkFuel() ) { carState = Running; }**
+    else { "Refuel Tank" }
+}
+
+applyBrake(){
+carState = Stop;
+}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>441</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>441</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>81</x>
+      <y>513</y>
+      <w>360</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>TurnOff
+--
+startCar(){
+**    if ( vc.checkBattery() ) { carState = TurnOn; }**
+    else { "Charge Battery" }
+}
+
+stopCar(){
+"Car is not moving";
+}
+
+accelarate(){
+"Turn on the car";
+}
+
+applyBrake(){
+"Car is not moving";
+}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1224</x>
+      <y>216</y>
+      <w>261</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>VisitorController
+--
+bg=GREEN
+float fuel;
+int battery;
+
+using IOT = variant&lt;float, int&gt;
+vector&lt;IOT&gt; check {fuel, battery};
+
++ checkFuel(){
+std::visit(
+    [](auto&amp; fuel){
+          fuel--;
+          if ( fuel &lt; 10 ) { return 0; }
+          else return 1;
+    }, check[0] )
+}
+
++ checkBattery()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>297</y>
+      <w>369</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;390.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>126</y>
+      <w>702</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>State Machine diagram for understanding flow of code.</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
