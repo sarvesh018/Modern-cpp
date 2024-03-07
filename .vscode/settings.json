@@ -90,6 +90,9 @@
         "format": "cpp",
         "spanstream": "cpp",
         "stacktrace": "cpp",
-        "stdfloat": "cpp"
+        "stdfloat": "cpp",
+        "stdlib.h": "c",
+        "stddef.h": "c",
+        "libc-header-start.h": "c"
     }
 }
