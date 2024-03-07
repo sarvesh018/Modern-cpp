@@ -8,22 +8,22 @@ class Observer;
 // Subject interface
 class Subject{
 public:
-    virtual void attach(Observer* obs) = 0;
-    virtual void detach(Observer* obs) = 0;
+    virtual void attach(std::shared_ptr<Observer> obs) = 0;
+    virtual void detach(std::shared_ptr<Observer> obs) = 0;
     virtual void setPrice(int stockPrice_) = 0;
     virtual void notify() = 0;
     virtual int getStockPrice() = 0;
 };
 
 // Observer interface
-class Observer{
+class Observer : public std::enable_shared_from_this<Observer>{
 protected:
     Subject* subject;
     int numberOfStocks;
 
 public:
     Observer(Subject* sub, int num) : subject(sub), numberOfStocks(num){
-        subject->attach(this);
+        subject->attach(shared_from_this());
     }
     int getNumberOfStock(){
         return numberOfStocks;
@@ -34,14 +34,14 @@ public:
 // Concrete Subject
 class ConcreteSubject : public Subject{
 private:
-    std::vector<Observer*> investors;
+    std::vector<std::shared_ptr<Observer>> investors; 
     int stockPrice;
 
 public:
-    void attach(Observer* obs) override{
-        investors.emplace_back(obs);
+    void attach(std::shared_ptr<Observer> obs) override{
+        investors.push_back(obs);
     }
-    void detach(Observer* obs) override{
+    void detach(std::shared_ptr<Observer> obs) override{
         investors.erase(std::remove(investors.begin(), investors.end(), obs), investors.end());
     }
     void setPrice(int stockPrice_) override{
@@ -62,7 +62,7 @@ public:
 class Investor : public Observer{
 public:
     Investor(Subject* sub, int stocks) : Observer(sub, stocks){}
-    void update(){
+    void update() override{
         std::cout << "Total Earnings : " << (subject->getStockPrice() * getNumberOfStock()) << std::endl;
     }
 };
@@ -70,8 +70,8 @@ public:
 int main(){
 
     ConcreteSubject subject;
-    Investor investor1(&subject, 13);
-    Investor investor2(&subject, 34);
+    auto investor1 = std::make_shared<Investor>(&subject, 13);
+    auto investor2 = std::make_shared<Investor>(&subject, 34);
 
     std::cout<<"Earning on day 1 : "<<std::endl;
     subject.setPrice(219);
