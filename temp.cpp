@@ -1,82 +1,49 @@
 #include <iostream>
-#include <memory>
-#include <vector>
-#include <algorithm>
+#include <functional>
+#include <tuple>
 
-class Observer;
+using S = std::string;
 
-// Subject interface
-class Subject{
-public:
-    virtual void attach(std::shared_ptr<Observer> obs) = 0;
-    virtual void detach(std::shared_ptr<Observer> obs) = 0;
-    virtual void setPrice(int stockPrice_) = 0;
-    virtual void notify() = 0;
-    virtual int getStockPrice() = 0;
-};
+S convertToCaps(std::string str){
+    for(int i=0; i<str.size(); i++){
+        str[i] = str[i]-32;
+    }
+    return str;
+}
 
-// Observer interface
-class Observer : public std::enable_shared_from_this<Observer>{
-protected:
-    Subject* subject;
-    int numberOfStocks;
+S addCurlyBracket(std::string str){
+    return "{ " + str + " }";
+}
 
-public:
-    Observer(Subject* sub, int num) : subject(sub), numberOfStocks(num){
-        subject->attach(shared_from_this());
-    }
-    int getNumberOfStock(){
-        return numberOfStocks;
-    }
-    virtual void update() = 0;
-};
+S addAdot(std::string str){
+    return str+"..";
+}
 
-// Concrete Subject
-class ConcreteSubject : public Subject{
-private:
-    std::vector<std::shared_ptr<Observer>> investors; 
-    int stockPrice;
+S addHello(std::string str){
+    return "HELLO " + str;
+}
 
-public:
-    void attach(std::shared_ptr<Observer> obs) override{
-        investors.push_back(obs);
-    }
-    void detach(std::shared_ptr<Observer> obs) override{
-        investors.erase(std::remove(investors.begin(), investors.end(), obs), investors.end());
-    }
-    void setPrice(int stockPrice_) override{
-        stockPrice = stockPrice_;
-        notify();
-    }
-    void notify() override{
-        for(const auto& obs : investors){
-            obs->update();
-        }
-    }
-    int getStockPrice() override{
-        return stockPrice;
-    }
-};
+S acceptAString(std::string str){
+    return str;
+}
 
-// Investor -> concerete class for all the observers
-class Investor : public Observer{
-public:
-    Investor(Subject* sub, int stocks) : Observer(sub, stocks){}
-    void update() override{
-        std::cout << "Total Earnings : " << (subject->getStockPrice() * getNumberOfStock()) << std::endl;
-    }
-};
+template<typename Func, typename Rest>
+auto compose(Func func, Rest rest){
+    return [func, rest](const auto& args){
+        return func(rest(args));
+    };
+}
+
+template<typename Func, typename... Rest>
+auto compose(Func func, Rest... rest){
+    return [func, rest...](const auto& args){
+        return func(compose(rest...)(args));
+    };
+}
 
 int main(){
+    auto functionComposition = compose(addCurlyBracket, addHello, addAdot, convertToCaps, acceptAString);
+    auto result = functionComposition("sarvesh");
 
-    ConcreteSubject subject;
-    auto investor1 = std::make_shared<Investor>(&subject, 13);
-    auto investor2 = std::make_shared<Investor>(&subject, 34);
-
-    std::cout<<"Earning on day 1 : "<<std::endl;
-    subject.setPrice(219);
-
-    std::cout<<"Earning on day 2 : "<<std::endl;
-    subject.setPrice(193);
-    return 0;
+    std::cout<<result;
 }

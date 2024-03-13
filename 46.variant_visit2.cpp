@@ -28,7 +28,7 @@ class House : public Visitable{
     double getValue() { return value;} // this is houses function to provide to the auditor for his calculation
     double accept(Visitor& v) override{ // accept is used to take the auditor in
  
-        return v.visit(*this); // this pointer here is the house. v is the visitor obj and visit is its func. to thst we are passing the house
+        return v.visit(*this); // this pointer here is the house. v is the visitor obj and visit is its func. to that we are passing the house
     }
     private:
     double value;

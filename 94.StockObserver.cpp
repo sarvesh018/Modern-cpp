@@ -49,9 +49,10 @@ public:
         notify();
     }
     void notify() override{
-        for(const auto& obs : investors){
-            obs->update();
-        }
+        // for(const auto& obs : investors){
+        //     obs->update();
+        // }
+        std::for_each(investors.begin(), investors.end(), [](const auto& obs){obs->update();});
     }
     int getStockPrice() override{
         return stockPrice;
